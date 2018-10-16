@@ -29,8 +29,8 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/'));
-app.use('/scripts', express.static(__dirname + '/node_modules/vue/dist/'));
+app.use('/static', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/static/js', express.static(__dirname + '/node_modules/vue/dist/'));
 
 app.use('/server/api/equipes', equipesRouter);
 app.use('/server/api/joueurs', joueursRouter);

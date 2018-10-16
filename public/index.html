@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Tournoi de Basket</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -13,15 +14,17 @@
             <th>Nom</th>
             <th>Date</th>
             <th>Saison</th>
+            <th>Lieu</th>
         </tr>
         <tr v-for="tournoi in tournois">
             <td>{{tournoi.nom}}</td>
             <td>{{tournoi.date_tournoi}}</td>
             <td>{{tournoi.saison}}</td>
+            <td>{{tournoi.lieu}}</td>
         </tr>
     </table>
   </div>
-  <script src="scripts/vue.js"></script>
+  <script src="static/js/vue.js"></script>
   <script src="js/main.js"></script>
 </body>
 
