@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
-var indexRouter = require('./routes/index');
 var equipesRouter = require('./routes/equipes');
 var joueursRouter = require('./routes/joueurs');
 var matchsRouter = require('./routes/matchs');
@@ -19,8 +18,8 @@ var db = require('./db/database');
 var app = express();
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 app.use(cors());
 app.use(logger('dev'));
@@ -31,13 +30,12 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/equipes', equipesRouter);
-app.use('/joueurs', joueursRouter);
-app.use('/matchs', matchsRouter);
-app.use('/phases', phasesRouter);
-app.use('/tournois', tournoisRouter);
-app.use('/users', usersRouter);
+app.use('/server/api/equipes', equipesRouter);
+app.use('/server/api/joueurs', joueursRouter);
+app.use('/server/api/matchs', matchsRouter);
+app.use('/server/api/phases', phasesRouter);
+app.use('/server/api/tournois', tournoisRouter);
+app.use('/server/api/users', usersRouter);
 
 // Server index.html page when request to the root is made
 app.get('/', function (req, res, next) {
