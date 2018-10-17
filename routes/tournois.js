@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var Tournoi = require('../models/Tournoi');
+var Tournament = require('../models/Tournament');
 
 var db = require('../db/database');
 
 /* GET tournois listing. */
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
-    Tournoi.getById(req.params.id, function(err, rows) {
+    Tournament.getById(req.params.id, function(err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -15,7 +15,7 @@ router.get('/:id?', function(req, res, next) {
       }
     });
   } else {
-    Tournoi.getAll(function(err, rows) {
+    Tournament.getAll(function(err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -26,7 +26,7 @@ router.get('/:id?', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  Tournoi.add(req.body, function(err, count) {
+  Tournament.add(req.body, function(err, count) {
     //console.log(req.body);
     if (err) {
       res.json(err);
@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
   });
 });
 router.post('/:id', function(req, res, next) {
-  Tournoi.deleteAll(req.body, function(err, count) {
+  Tournament.deleteAll(req.body, function(err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -45,7 +45,7 @@ router.post('/:id', function(req, res, next) {
   });
 });
 router.delete('/:id', function(req, res, next) {
-  Tournoi.delete(req.params.id, function(err, count) {
+  Tournament.delete(req.params.id, function(err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -54,7 +54,7 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 router.put('/:id', function(req, res, next) {
-  Tournoi.updateTask(req.params.id, req.body, function(err, rows) {
+  Tournament.updateTask(req.params.id, req.body, function(err, rows) {
     if (err) {
       res.json(err);
     } else {
