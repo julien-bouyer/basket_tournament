@@ -1,8 +1,8 @@
 // routes
 page('/equipes/edit/:equipe', function(a, b, c) {
-  console.log('edition de l\'équipe '  );
+  console.log('edition de l\'équipe');
 }, function(a, b, c) {
-  console.log('edition de l\'équipe '  );
+  console.log('edition de l\'équipe (after)');
 });
 
 var EquipesVue = new Vue({

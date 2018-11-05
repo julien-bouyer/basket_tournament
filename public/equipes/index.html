@@ -5,40 +5,45 @@
   <meta charset="utf-8">
   <title>Tournoi de Basket - équipes</title>
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div id="equipes-app">
+    <nav-bt></nav-bt>
     <div>
-      <h1>Equipes</h1>
+      <h2 class="h3">Equipes</h2>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-sm">Nom</div>
-        <div class="col-sm">Commune</div>
-        <div class="col-sm">Type</div>
-        <div class="col-sm">Département</div>
-        <div class="col-sm">Actions</div>
-      </div>
-      <div class="row" v-for="equipe in equipes">
-        <div class="col-sm">{{equipe.name}}</div>
-        <div class="col-sm">{{equipe.city}}</div>
-        <div class="col-sm">{{equipe.sex}}</div>
-        <div class="col-sm">{{equipe.county}}</div>
-        <div class="col-sm">
-          <a :href="'edit/' + equipe.id">Modifier</a>
-          <a :href="'delete/' + equipe.id">Supprimer</a>
+      <div class="bt-grid">
+        <div class="row bt-grid__head">
+          <div class="col-sm">Nom</div>
+          <div class="col-sm">Commune</div>
+          <div class="col-sm">Type</div>
+          <div class="col-sm">Département</div>
+          <div class="col-sm">Actions</div>
+        </div>
+        <div class="row bt-grid__line" v-for="equipe in equipes">
+          <div class="col-sm">{{equipe.name}}</div>
+          <div class="col-sm">{{equipe.city}}</div>
+          <div class="col-sm">{{equipe.sex}}</div>
+          <div class="col-sm">{{equipe.county}}</div>
+          <div class="col-sm">
+            <a :href="'edit/' + equipe.id" class="btn btn-outline-primary btn-sm disabled">Modifier</a>
+            <a :href="'delete/' + equipe.id" class="btn btn-outline-danger btn-sm disabled">Supprimer</a>
+          </div>
         </div>
       </div>
       <span class="border-bottom"></span>
     </div>
 
     <div class="container">
-      Ajouter une équipe
+      <button type="button" class="btn btn-primary" disabled>Ajouter une équipe</button>
     </div>
   </div>
   <script src="/static/js/vue.js"></script>
   <script src="/static/js/page.js"></script>
+  <script src="/js/nav-bt.js"></script>
   <script src="/js/equipes.js"></script>
 </body>
 

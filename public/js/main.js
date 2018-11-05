@@ -20,22 +20,9 @@
 //   }
 // })
 
-var TournoiVue = new Vue({
+var DashboardVue = new Vue({
   el: '#app',
   data: {
-    tournois: []
-  },
-  mounted: function() {
-    var self = this;
-
-    fetch('/server/api/tournois/1')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(tournois) {
-        if (tournois) {
-          self.tournois = tournois;
-        }
-      });
+    title: 'Bienvenue'
   }
 });
