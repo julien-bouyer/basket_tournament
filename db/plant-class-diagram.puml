@@ -1,0 +1,89 @@
+@startuml
+
+class tournament {
+    id : int
+    name : String
+    date_tournament : Date
+    season : String
+    place : String
+}
+
+class team {
+    id : int
+    name : String
+    city : String
+    sex : String
+    county : int
+}
+
+class player {
+    id : int
+    lastname : String
+    firstname : String
+    birthday : Date
+    sex : String
+    num : int
+}
+
+class phase {
+    id : int
+    name : String
+    type : String
+    completed : boolean
+    sex : String
+    id_tournament : int
+}
+tournament "0" -- "n" phase
+
+class game {
+    id : int
+    terrain : String
+    horaire : int
+    termine : boolean
+    id_winningteam : int
+    id_phase : int
+}
+team "1" -- "1" game
+phase "0" -- "n" game
+
+class tournament_team {
+    id_tournament : int
+    id_team : int
+}
+tournament "0" -- "n" tournament_team
+team "0" -- "n" tournament_team
+
+class team_player {
+    id_team : int
+    id_player : int
+}
+team "0" -- "n" team_player
+player "0" -- "n" team_player
+
+class team_phase {
+    id_team int
+    id_phase int
+    points int
+    pointsFor int
+    pointsAgainst int
+}
+team "0" -- "n" team_phase
+phase "0" -- "n" team_phase
+
+class team_game {
+    id_team int
+    id_game int
+    points int
+}
+team "0" -- "n" team_game
+game "0" -- "n" team_game
+
+class player_game {
+    id_player int
+    id_game int
+    points int
+}
+player "0" -- "n" player_game
+game "0" -- "n" player_game
+
+@enduml

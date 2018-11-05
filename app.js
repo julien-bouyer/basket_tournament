@@ -31,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/static/js', express.static(__dirname + '/node_modules/vue/dist/'));
+app.use('/static/js', express.static(__dirname + '/node_modules/page/'));
 
 app.use('/server/api/equipes', equipesRouter);
 app.use('/server/api/joueurs', joueursRouter);
@@ -42,7 +43,7 @@ app.use('/server/api/users', usersRouter);
 // Server index.html page when request to the root is made
 app.get('/', function (req, res, next) {
   res.sendfile('./public/index.html')
-})
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
