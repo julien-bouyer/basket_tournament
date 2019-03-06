@@ -1,9 +1,7 @@
-// routes
-page('/tournois/edit/:tournoi', function(a, b, c) {
-  console.log('edition du tournoi');
-}, function(a, b, c) {
-  console.log('edition du tournoi (after)');
-});
+
+// TODO
+// - clic sur modifier ouvre une popin d'édition à gérer via Vue.js
+// - clic sur supprimer supprime la ligne
 
 var TournoisVue = new Vue({
   el: '#tournois-app',

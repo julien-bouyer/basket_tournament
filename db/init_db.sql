@@ -10,7 +10,7 @@ create table tournament (
     season varchar(15), -- 2018-2019
     place varchar(30),
     primary key (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists team;
 create table team (
@@ -20,7 +20,7 @@ create table team (
     sex varchar(8), -- MASCULIN / FEMININ
     county int,
     primary key (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists player;
 create table player (
@@ -31,7 +31,7 @@ create table player (
     sex varchar(5), -- HOMME / FEMME
     num smallint,
     primary key (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists phase;
 create table phase (
@@ -43,7 +43,7 @@ create table phase (
     id_tournament smallint,
     primary key (id),
     constraint fk_phase_tournament foreign key (id_tournament) references tournament(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists game;
 create table game (
@@ -56,7 +56,7 @@ create table game (
     primary key (id),
     constraint fk_game_winningteam foreign key (id_winningteam) references team(id),
     constraint fk_game_phase foreign key (id_phase) references phase(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists tournament_team;
 create table tournament_team (
@@ -65,7 +65,7 @@ create table tournament_team (
     primary key (id_tournament, id_team),
     constraint fk_tournament_team_tournament foreign key (id_tournament) references tournament(id),
     constraint fk_tournament_team_team foreign key (id_team) references team(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists team_player;
 create table team_player (
@@ -74,7 +74,7 @@ create table team_player (
     primary key (id_team, id_player),
     constraint fk_team_player_team foreign key (id_team) references team(id),
     constraint fk_team_player_player foreign key (id_player) references player(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists team_phase;
 create table team_phase (
@@ -86,7 +86,7 @@ create table team_phase (
     primary key (id_team, id_phase),
     constraint fk_team_phase_team foreign key (id_team) references team(id),
     constraint fk_team_phase_phase foreign key (id_phase) references phase(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists team_game;
 create table team_game (
@@ -96,7 +96,7 @@ create table team_game (
     primary key (id_team, id_game),
     constraint fk_team_game_team foreign key (id_team) references team(id),
     constraint fk_team_game_game foreign key (id_game) references game(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 drop table if exists player_game;
 create table player_game (
@@ -106,4 +106,4 @@ create table player_game (
     primary key (id_player, id_game),
     constraint fk_player_game_player foreign key (id_player) references player(id),
     constraint fk_player_game_game foreign key (id_game) references game(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

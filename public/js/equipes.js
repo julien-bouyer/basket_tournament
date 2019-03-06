@@ -1,9 +1,7 @@
-// routes
-page('/equipes/edit/:equipe', function(a, b, c) {
-  console.log('edition de l\'équipe');
-}, function(a, b, c) {
-  console.log('edition de l\'équipe (after)');
-});
+
+// TODO
+// - clic sur modifier ouvre une popin d'édition à gérer via Vue.js
+// - clic sur supprimer supprime la ligne
 
 var EquipesVue = new Vue({
   el: '#equipes-app',
