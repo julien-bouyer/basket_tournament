@@ -11,7 +11,6 @@
 <body>
   <div id="equipes-app">
     <nav-bt current="Equipes"></nav-bt>
-  <!-- <component v-bind:is="navbt"></component> -->
     <div>
     </div>
     <h2 class="h3">Equipes</h2>
@@ -30,8 +29,8 @@
           <div class="col-sm">{{equipe.sex}}</div>
           <div class="col-sm">{{equipe.county}}</div>
           <div class="col-sm">
-            <a :href="'edit/' + equipe.id" class="btn btn-outline-primary btn-sm">Modifier</a>
-            <a :href="'delete/' + equipe.id" class="btn btn-outline-danger btn-sm">Supprimer</a>
+            <button @click="edit(equipe.id)" class="btn btn-outline-primary btn-sm">Modifier</a>
+            <button @click="remove(equipe.id)" class="btn btn-outline-danger btn-sm">Supprimer</a>
           </div>
         </div>
       </div>
@@ -43,8 +42,7 @@
     </div>
   </div>
   <script src="/static/js/vue.js"></script>
-  <script src="/js/nav-bt.js"></script>
-  <script src="/js/equipes.js"></script>
+  <script src="/js/equipes/main.js" type="module"></script>
 </body>
 
 </html>

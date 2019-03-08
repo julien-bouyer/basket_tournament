@@ -1,4 +1,4 @@
-Vue.component('nav-bt', {
+export default {
   methods: {
     back: function () {
       window.history.back();
@@ -48,4 +48,4 @@ Vue.component('nav-bt', {
                   </ul>
                 </div>
             </nav>`
-});
+};
