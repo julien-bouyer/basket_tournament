@@ -1,4 +1,4 @@
-import NavBt from '../nav-bt.js';
+import NavBt from '../components/nav-bt.js';
 import Modal from '../components/modal.js';
 
 // TODO
@@ -12,11 +12,13 @@ Vue.component('modal', Modal);
 var EquipesVue = new Vue({
   el: '#equipes-app',
   data: {
+    uri: '/server/api/equipes',
+    showModal: false,
     equipes: []
   },
   mounted: function() {
     var self = this;
-    fetch('/server/api/equipes')
+    fetch(this.uri)
       .then(function(response) {
         return response.json();
       })
@@ -29,9 +31,60 @@ var EquipesVue = new Vue({
   methods: {
     edit(id) {
       console.log('edit : ' + id);
+      this.showModal = true;
+
+      //let modal = this.$ref.modal;
+
+      fetch(this.uri + '/' + id, {
+        method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: 'Les Palots',
+          city: 'Saint Georges de Montaigu',
+          sex: 'FEMININ',
+          county: 85
+        })
+      })
+      .then(res => {
+          if (res.status !== 200) {
+            console.error(res.statusText + ' ' + res.status);
+            return;
+          }
+          // Examine the text in the response
+          res.json().then(data => {
+            console.log(data);
+          });
+        }
+      )
+      .catch(err => {
+        console.error('error', err);
+      });
     },
     remove(id) {
-      console.log('remove : ' + id);
+      fetch(this.uri + '/' + id, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+          if (res.status !== 200) {
+            console.error(res.statusText + ' ' + res.status);
+            return;
+          }
+
+          // Examine the text in the response
+          res.json().then(data => {
+            console.log(data);
+          });
+        }
+      )
+      .catch(err => {
+        console.error('error', err);
+      });
     }
   }
 });

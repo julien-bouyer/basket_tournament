@@ -35,15 +35,15 @@ router.post('/', function(req, res, next) {
     }
   });
 });
-router.post('/:id', function(req, res, next) {
-  Tournament.deleteAll(req.body, function(err, count) {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(count);
-    }
-  });
-});
+// router.post('/:id', function(req, res, next) {
+//   Tournament.deleteAll(req.body, function(err, count) {
+//     if (err) {
+//       res.json(err);
+//     } else {
+//       res.json(count);
+//     }
+//   });
+// });
 router.delete('/:id', function(req, res, next) {
   Tournament.delete(req.params.id, function(err, count) {
     if (err) {
@@ -54,7 +54,7 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 router.put('/:id', function(req, res, next) {
-  Tournament.updateTask(req.params.id, req.body, function(err, rows) {
+  Tournament.update(req.params.id, req.body, function(err, rows) {
     if (err) {
       res.json(err);
     } else {

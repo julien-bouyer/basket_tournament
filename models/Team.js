@@ -11,10 +11,11 @@ var Team = {
     return db.query('insert into team (name, city, sex, county) values (?, ?, ?, ?)', [team.name, team.city, team.sex, team.county], callback);
   },
   delete: function(id, callback) {
+    console.log('Team : delete ' + id);
     return db.query('delete from team where id = ?', [id], callback);
   },
   update: function(id, team, callback) {
-    return db.query('update team set name = ?, city = ?, sex = ?, lieu = ?, county = ? where id = ?', [team.name, team.city, team.sex, team.lieu, team.county, id], callback);
+    return db.query('update team set name = ?, city = ?, sex = ?, county = ? where id = ?', [team.name, team.city, team.sex, team.county, id], callback);
   },
   deleteAll: function(item, callback) {
     var delarr = [];

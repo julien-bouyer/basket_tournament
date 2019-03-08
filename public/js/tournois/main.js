@@ -1,4 +1,4 @@
-import NavBt from '../nav-bt.js';
+import NavBt from '../components/nav-bt.js';
 
 // TODO
 // - clic sur modifier ouvre une popin d'édition à gérer via Vue.js

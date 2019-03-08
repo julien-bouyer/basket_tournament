@@ -1,3 +1,4 @@
+import NavBt from './components/nav-bt.js';
 // (function() {
 //   'use strict';
 //   document.addEventListener('DOMContentLoaded', function() {
@@ -20,7 +21,9 @@
 //   }
 // })
 
-var DashboardVue = new Vue({
+Vue.component('nav-bt', NavBt);
+
+var HomeVue = new Vue({
   el: '#app',
   data: {
     title: 'Bienvenue'
