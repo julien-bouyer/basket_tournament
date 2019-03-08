@@ -22,6 +22,9 @@
     "vue": "^2.5.17"
   },
   "scripts": {
+    "db:build": "docker-compose build",
+    "db:up" :"docker-compose up -d",
+    "db:down": "docker-compose down",
     "clean": "npm install rimraf && npm run clean:svg",
     "clean:modules": "rimraf ./node_modules",
     "start": "run-p start:*",
