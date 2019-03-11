@@ -22,10 +22,10 @@
     "vue": "^2.5.17"
   },
   "scripts": {
-    "db:build": "docker-compose build",
-    "db:up" :"docker-compose up -d",
-    "db:down": "docker-compose down",
-    "clean": "npm install rimraf && npm run clean:svg",
+    "db:build": "cd docker && docker-compose build",
+    "db:up": "cd docker && docker-compose up -d",
+    "db:down": "cd docker && docker-compose down",
+    "clean": "npm install rimraf && npm run clean:modules",
     "clean:modules": "rimraf ./node_modules",
     "start": "run-p start:*",
     "start:node": "node ./bin/www",
