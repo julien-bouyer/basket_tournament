@@ -14,6 +14,21 @@ var EquipesVue = new Vue({
   data: {
     uri: '/server/api/equipes',
     showModal: false,
+    modal: {
+      id: 0,
+      title: '',
+      name: '',
+      city: '',
+      sex: '',
+      county: 0,
+    },
+    sexValues: [{
+        id: 'MASCULIN',
+        value: 'Masculin'
+      },{
+        id: 'FEMININ',
+        value: 'Féminin'
+      }],
     equipes: []
   },
   mounted: function() {
@@ -29,23 +44,52 @@ var EquipesVue = new Vue({
       });
   },
   methods: {
+    add() {
+      debugger;
+      this.modal.title = 'Ajout d\'une nouvelle équipe';
+      this.modal.id = 0;
+      this.modal.name = '';
+      this.modal.city = '';
+      this.modal.sex = '';
+      this.modal.county = '';
+      this.showModal = true;
+    },
     edit(id) {
       console.log('edit : ' + id);
-      this.showModal = true;
-
-      //let modal = this.$ref.modal;
-
-      fetch(this.uri + '/' + id, {
-        method: 'put',
+      debugger;
+      let equipe = this.equipes[id];
+      if (equipe) {
+        this.modal.title = 'Modification d\'une équipe';
+        this.modal.id = id;
+        this.modal.name = equipe.name;
+        this.modal.city = equipe.city;
+        this.modal.sex = equipe.sex;
+        this.modal.county = equipe.county;
+        this.showModal = true;
+      }
+    },
+    submit() {
+      debugger;
+      // TODO récupérer les infos de la modal
+      let submitUri = this.uri;
+      let method;
+      if (this.modal.id > 0) {
+        submitUri += '/' + this.modal.id;
+        method = 'put';
+      } else {
+        method = 'post';
+      }
+      fetch(submitUri, {
+        method: method,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          name: 'Les Palots',
-          city: 'Saint Georges de Montaigu',
-          sex: 'FEMININ',
-          county: 85
+          name: this.modal.name,
+          city: this.modal.city,
+          sex: this.modal.sex,
+          county: this.modal.county
         })
       })
       .then(res => {

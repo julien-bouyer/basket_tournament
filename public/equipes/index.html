@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
@@ -8,7 +7,6 @@
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
   <div id="equipes-app">
     <nav-bt current="Equipes"></nav-bt>
@@ -36,18 +34,35 @@
       <span class="border-bottom"></span>
     </div>
     <div class="container">
-      <button type="button" class="btn btn-primary" disabled>Ajouter une équipe</button>
+      <button @click="add()" class="btn btn-primary">Ajouter une équipe</button>
     </div>
     <!-- use the modal component, pass in the prop -->
-    <modal v-if="showModal" @close="showModal = false">
-      <span slot="header">Modif équipe</span>
-      <div>
-        body
+    <modal v-if="showModal" @close="showModal = false" @submit="submit()">
+      <span slot="header">{{modal.title}}</span>
+      <div slot="body" class="container">
+        <input type="hidden" id="teamId" v-model="modal.id"/>
+        <div class="form-group">
+          <label for="teamName">Nom de l'équipe</label>
+          <input type="text" class="form-control" id="teamName" v-model="modal.name" placeholder="Nom de l'équipe">
+        </div>
+        <div class="form-group">
+          <label for="teamCity">Commune</label>
+          <input type="text" class="form-control" id="teamCity" v-model="modal.city" placeholder="Commune">
+        </div>
+        <div class="form-group">
+          <label for="teamSex">Type</label>
+          <select class="form-control" id="teamSex" v-model="modal.sex">
+            <option v-for="sexValue in sexValues" v-bind:value="sexValue.id">{{sexValue.value}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="teamCounty">Département</label>
+          <input type="input" class="form-control" id="teamCounty" v-model="modal.county" placeholder="Département" min="01" max="99">
+        </div>
       </div>
     </modal>
   </div>
   <script src="/static/js/vue.js"></script>
   <script src="/js/equipes/main.js" type="module"></script>
 </body>
-
 </html>

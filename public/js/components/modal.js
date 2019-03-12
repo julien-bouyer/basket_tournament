@@ -17,7 +17,7 @@ export default {
             <div class="modal-footer">
               <slot name="footer"></slot>
               <button type="button" class="btn btn-secondary" @click="$emit('close')">Fermer</button>
-              <button type="button" class="btn btn-primary">Enregistrer</button>
+              <button type="button" class="btn btn-primary" @click="$emit('submit')">Enregistrer</button>
             </div>
           </div>
         </div>
