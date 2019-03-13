@@ -32,12 +32,10 @@ var EquipesVue = new Vue({
     equipes: []
   },
   mounted: function() {
-    var self = this;
+    let self = this;
     fetch(this.uri)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(equipes) {
+      .then(res => res.json())
+      .then(equipes => {
         if (equipes) {
           self.equipes = equipes;
         }
@@ -45,7 +43,6 @@ var EquipesVue = new Vue({
   },
   methods: {
     add() {
-      debugger;
       this.modal.title = 'Ajout d\'une nouvelle équipe';
       this.modal.id = 0;
       this.modal.name = '';
@@ -55,10 +52,9 @@ var EquipesVue = new Vue({
       this.showModal = true;
     },
     edit(id) {
-      console.log('edit : ' + id);
-      debugger;
-      let equipe = this.equipes[id];
-      if (equipe) {
+      let equipesFiltered = this.equipes.filter(e => e.id === id);
+      if (equipesFiltered && equipesFiltered.length === 1) {
+        let equipe = equipesFiltered[0];
         this.modal.title = 'Modification d\'une équipe';
         this.modal.id = id;
         this.modal.name = equipe.name;
@@ -69,8 +65,8 @@ var EquipesVue = new Vue({
       }
     },
     submit() {
-      debugger;
-      // TODO récupérer les infos de la modal
+      // TODO valider la saisie du formulaire
+      let self = this;
       let submitUri = this.uri;
       let method;
       if (this.modal.id > 0) {
@@ -98,16 +94,22 @@ var EquipesVue = new Vue({
             return;
           }
           // Examine the text in the response
-          res.json().then(data => {
-            console.log(data);
+          res.json().then(equipe => {
+            if (self.modal.id > 0) {
+              let idx = self.equipes.findIndex(e => e.id === equipe.id);
+              self.equipes.splice(idx, 1, equipe);
+            } else {
+              self.equipes.push(equipe);
+            }
+            self.showModal = false;
+            self.$forceUpdate();
           });
         }
       )
-      .catch(err => {
-        console.error('error', err);
-      });
+      .catch(err => console.error('error', err));
     },
     remove(id) {
+      let self = this;
       fetch(this.uri + '/' + id, {
         method: 'delete',
         headers: {
@@ -119,16 +121,14 @@ var EquipesVue = new Vue({
             console.error(res.statusText + ' ' + res.status);
             return;
           }
-
           // Examine the text in the response
           res.json().then(data => {
-            console.log(data);
+            let idx = self.equipes.findIndex(e => e.id === id);
+            self.equipes.splice(idx, 1);
           });
         }
       )
-      .catch(err => {
-        console.error('error', err);
-      });
+      .catch(err => console.error('error', err));
     }
   }
 });

@@ -11,7 +11,6 @@ var Team = {
     return db.query('insert into team (name, city, sex, county) values (?, ?, ?, ?)', [team.name, team.city, team.sex, team.county], callback);
   },
   delete: function(id, callback) {
-    console.log('Team : delete ' + id);
     return db.query('delete from team where id = ?', [id], callback);
   },
   update: function(id, team, callback) {

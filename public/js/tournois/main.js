@@ -13,10 +13,8 @@ var TournoisVue = new Vue({
   mounted: function() {
     var self = this;
     fetch('/server/api/tournois/1')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(tournois) {
+      .then(res => res.json())
+      .then(tournois => {
         if (tournois) {
           self.tournois = tournois;
         }

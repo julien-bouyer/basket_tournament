@@ -26,39 +26,33 @@ router.get('/:id?', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  Team.add(req.body, function(err, count) {
-    //console.log(req.body);
+  Team.add(req.body, function(err, result) {
     if (err) {
       res.json(err);
     } else {
-      res.json(req.body); //or return count for 1 & 0
+      let equipe = req.body;
+      equipe.id = result.insertId;
+      res.json(equipe);
     }
   });
 });
-// router.post('/:id', function(req, res, next) {
-//   Team.deleteAll(req.body, function(err, count) {
-//     if (err) {
-//       res.json(err);
-//     } else {
-//       res.json(count);
-//     }
-//   });
-// });
 router.delete('/:id', function(req, res, next) {
-  Team.delete(req.params.id, function(err, count) {
+  Team.delete(req.params.id, function(err, result) {
     if (err) {
       res.json(err);
     } else {
-      res.json(count);
+      res.json(result);
     }
   });
 });
 router.put('/:id', function(req, res, next) {
-  Team.update(req.params.id, req.body, function(err, rows) {
+  Team.update(req.params.id, req.body, function(err, result) {
     if (err) {
       res.json(err);
     } else {
-      res.json(rows);
+      let equipe = req.body;
+      equipe.id = parseInt(req.params.id, 10);
+      res.json(equipe);
     }
   });
 });
