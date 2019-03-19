@@ -30,22 +30,26 @@ export default {
     };
   },
   props: ['current'],
-  template: `<nav class="navbar navbar-expand-lg navbar-light navbar-sps">
-                <a class="navbar-brand" href="#">
-                  <h1 class="h4">{{title}}</h1>
-                </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
+  template: `<nav class="sidebar js-sidebar">
+                <div class="sidebar-header">
+                    <h3>{{title}}</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p>Gestion</p>
                     <li v-for="link in links"
                         v-bind:class="['nav-item', { active: current === link.title }]">
                       <a v-bind:class="['nav-link', { disabled: link.disabled === true }]" v-bind:href="link.href">{{link.title}}</a>
                     </li>
-                  </ul>
-                  <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#" v-on:click="back">Retour</a>
-                    </li>
-                  </ul>
-                </div>
+                    <!--<li>
+                        <a href="#">About</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                    </li>-->
+                </ul>
             </nav>`
 };

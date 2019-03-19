@@ -8,11 +8,12 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <div id="app">
-    <nav-bt current="Home"></nav-bt>
-    <div class="container">
-      {{title}}
-      <span class="border-bottom"></span>
+  <div id="app" class="wrapper">
+    <!-- Sidebar -->
+    <sidebar current="Home"></sidebar>
+    <!-- Page Content Holder -->
+    <div class="content">
+        <navbar title="Home"></navbar>
     </div>
   </div>
   <script src="/static/js/vue.js"></script>
