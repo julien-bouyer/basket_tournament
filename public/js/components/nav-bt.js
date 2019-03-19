@@ -30,7 +30,7 @@ export default {
     };
   },
   props: ['current'],
-  template: `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  template: `<nav class="navbar navbar-expand-lg navbar-light navbar-sps">
                 <a class="navbar-brand" href="#">
                   <h1 class="h4">{{title}}</h1>
                 </a>

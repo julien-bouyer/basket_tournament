@@ -1,16 +1,8 @@
 
-.bt-grid {
-}
-.bt-grid .bt-grid__head {
+.navbar-sps {
   background-color: #ffaa33;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-.bt-grid .bt-grid__head,
-.bt-grid .bt-grid__line {
-  padding: 0.5em;
-}
 
+}
 
 .modal-mask {
   position: fixed;
