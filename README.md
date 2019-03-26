@@ -14,6 +14,9 @@ In debug mode :
 
 `DEBUG=myapp:* npm start`
 
+
+`npm run start`
+
 ### Database
 
 #### Docker
