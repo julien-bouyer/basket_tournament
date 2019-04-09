@@ -29,7 +29,8 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/static', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/static/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/static/icons', express.static(__dirname + '/node_modules/material-design-icons/iconfont'));
 app.use('/static/js', express.static(__dirname + '/node_modules/vue/dist/'));
 
 app.use('/server/api/equipes', equipesRouter);

@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
   <title>Tournoi de Basket - tournois</title>
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/icons/material-icons.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -31,10 +32,10 @@
                   <td>{{tournoi.season}}</td>
                   <td>{{tournoi.place}}</td>
                   <td>
-                    <button type="button" @click="edit(tournoi.id)" class="btn btn-outline-primary btn-sm disabled">Modifier</button>
-                    <button type="button" @click="start(tournoi.id)" class="btn btn-outline-success btn-sm disabled">Démarrer</button>
-                    <button type="button" @click="stop(tournoi.id)" class="btn btn-outline-dark btn-sm disabled">Fin</button>
-                    <button type="button" @click="remove(tournoi.id)" class="btn btn-outline-danger btn-sm disabled">Supprimer</button>
+                    <button type="button" @click="edit(tournoi.id)" class="btn btn-outline-primary btn-sm disabled"><i class="material-icons md-18">edit</i></button>
+                    <button type="button" @click="start(tournoi.id)" class="btn btn-outline-success btn-sm disabled"><i class="material-icons md-18">play_arrow</i></button>
+                    <button type="button" @click="stop(tournoi.id)" class="btn btn-outline-dark btn-sm disabled"><i class="material-icons md-18">stop</i></button>
+                    <button type="button" @click="remove(tournoi.id)" class="btn btn-outline-danger btn-sm disabled"><i class="material-icons md-18">delete</i></button>
                   </td>
                 </tr>
               </tbody>
@@ -43,7 +44,7 @@
           <span class="border-bottom"></span>
         </div>
         <div class="container">
-          <button type="button" class="btn btn-primary" disabled>Ajouter un tournoi</button>
+          <button type="button" class="btn btn-primary" disabled><i class="material-icons md-18">add</i>Ajouter un tournoi</button>
         </div>
       </div>
   </div>

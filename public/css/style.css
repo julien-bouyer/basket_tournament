@@ -73,7 +73,6 @@ a, a:hover, a:focus {
 
 .sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
 }
 
 .sidebar ul p {
@@ -191,3 +190,11 @@ a.article, a.article:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
 }
+
+/* ---------------------------------------------------
+    MATERIAL-ICONS
+----------------------------------------------------- */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }

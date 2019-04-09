@@ -10,8 +10,7 @@ export default {
                   <h2 class="h4">{{title}}</h2>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                  </ul>
+                  <ul class="navbar-nav mr-auto"></ul>
                   <ul class="nav justify-content-end">
                     <li class="nav-item">
                       <a class="nav-link active" href="#" v-on:click="back">Retour</a>
