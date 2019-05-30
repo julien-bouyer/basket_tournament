@@ -4,39 +4,49 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
   <title>Tournoi de Basket - tournois</title>
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/icons/material-icons.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <div id="tournois-app">
-    <nav-bt current="Tournois"></nav-bt>
-    <h2 class="h3">Tournois</h2>
-    <div class="container">
-      <div class="bt-grid">
-        <div class="row bt-grid__head">
-          <div class="col-sm">Nom</div>
-          <div class="col-sm">Date</div>
-          <div class="col-sm">Saison</div>
-          <div class="col-sm">Lieu</div>
-          <div class="col-sm">Actions</div>
-        </div>
-        <div class="row" v-for="tournoi in tournois">
-          <div class="col-sm">{{tournoi.name}}</div>
-          <div class="col-sm">{{tournoi.date_tournament}}</div>
-          <div class="col-sm">{{tournoi.season}}</div>
-          <div class="col-sm">{{tournoi.place}}</div>
-          <div class="col-sm">
-            <a :href="'edit/' + tournoi.id" class="btn btn-outline-primary btn-sm disabled">Modifier</a>
-            <a :href="'delete/' + tournoi.id" class="btn btn-success btn-sm disabled">Démarrer</a>
-            <a :href="'delete/' + tournoi.id" class="btn btn-light btn-sm disabled">Fin</a>
+  <div id="tournois-app" class="wrapper">
+      <sidebar current="Tournois"></sidebar>
+      <div class="content">
+        <navbar title="Tournois"></navbar>
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Date</th>
+                  <th>Saison</th>
+                  <th>Lieu</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="tournoi in tournois">
+                  <td>{{tournoi.name}}</td>
+                  <td>{{tournoi.date_tournament}}</td>
+                  <td>{{tournoi.season}}</td>
+                  <td>{{tournoi.place}}</td>
+                  <td>
+                    <button type="button" @click="edit(tournoi.id)" class="btn btn-outline-primary btn-sm disabled"><i class="material-icons md-18">edit</i></button>
+                    <button type="button" @click="start(tournoi.id)" class="btn btn-outline-success btn-sm disabled"><i class="material-icons md-18">play_arrow</i></button>
+                    <button type="button" @click="stop(tournoi.id)" class="btn btn-outline-dark btn-sm disabled"><i class="material-icons md-18">stop</i></button>
+                    <button type="button" @click="remove(tournoi.id)" class="btn btn-outline-danger btn-sm disabled"><i class="material-icons md-18">delete</i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+          <span class="border-bottom"></span>
+        </div>
+        <div class="container">
+          <button type="button" class="btn btn-primary" disabled><i class="material-icons md-18">add</i>Ajouter un tournoi</button>
         </div>
       </div>
-      <span class="border-bottom"></span>
-    </div>
-    <div class="container">
-      <button type="button" class="btn btn-primary" disabled>Ajouter un tournoi</button>
-    </div>
   </div>
   <script src="/static/js/vue.js"></script>
   <script src="/js/tournois/main.js" type="module"></script>

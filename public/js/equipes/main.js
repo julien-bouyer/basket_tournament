@@ -1,11 +1,14 @@
-import NavBt from '../components/nav-bt.js';
+import Sidebar from '../components/sidebar.js';
+import Navbar from '../components/navbar.js';
+
 import Modal from '../components/modal.js';
 
 // TODO
 // - clic sur modifier ouvre une popin d'édition à gérer via Vue.js
 // - clic sur supprimer supprime la ligne
 
-Vue.component('nav-bt', NavBt);
+Vue.component('sidebar', Sidebar);
+Vue.component('navbar', Navbar);
 Vue.component('modal', Modal);
 
 // Vue de la page equipes.html
