@@ -1,13 +1,12 @@
 <template>
-  <section class="container">
-    Tournoi de basket
-  </section>
+    <section class="container">
+        welcome
+    </section>
 </template>
 
 <script>
-
-export default {
-};
+    export default {
+    };
 </script>
 
 <style scoped>

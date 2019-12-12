@@ -1,17 +1,18 @@
 <template>
-  <section>
-    <md-toolbar class="navBar">
-    </md-toolbar>
-    <router-view></router-view>
-  </section>
+    <section>
+        <toolbar title="Tournoi de basket"/>
+        <router-view></router-view>
+    </section>
 </template>
 
 <script>
+    import Toolbar from './components/Toolbar';
 
-export default {
-  components: {
-  }
-};
+    export default {
+        components: {
+            Toolbar
+        }
+    };
 </script>
 
 <style scoped>
