@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var Tournament = require('../models/Tournament');
+'use strict';
 
-var db = require('../db/database');
+var express = require('express'),
+    router = express.Router(),
+    Tournament = require('../models/Tournament');
 
 /* GET tournois listing. */
-router.get('/:id?', function(req, res, next) {
+router.get('/:id?', function(req, res) {
   if (req.params.id) {
     Tournament.getById(req.params.id, function(err, rows) {
       if (err) {
@@ -25,8 +25,8 @@ router.get('/:id?', function(req, res, next) {
   }
 });
 
-router.post('/', function(req, res, next) {
-  Tournament.add(req.body, function(err, count) {
+router.post('/', function(req, res) {
+  Tournament.add(req.body, function(err) {
     if (err) {
       res.json(err);
     } else {
@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
     }
   });
 });
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', function(req, res) {
   Tournament.delete(req.params.id, function(err, count) {
     if (err) {
       res.json(err);
@@ -43,7 +43,7 @@ router.delete('/:id', function(req, res, next) {
     }
   });
 });
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function(req, res) {
   Tournament.update(req.params.id, req.body, function(err, rows) {
     if (err) {
       res.json(err);

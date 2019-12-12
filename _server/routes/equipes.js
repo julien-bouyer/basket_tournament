@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var Team = require('../models/Team');
+'use strict';
 
-var db = require('../db/database');
+var express = require('express'),
+    router = express.Router(),
+    Team = require('../models/Team');
 
 /* GET tournois listing. */
-router.get('/:id?', function(req, res, next) {
+router.get('/:id?', function(req, res) {
   if (req.params.id) {
     Team.getById(req.params.id, function(err, rows) {
       if (err) {
@@ -25,7 +25,7 @@ router.get('/:id?', function(req, res, next) {
   }
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
   Team.add(req.body, function(err, result) {
     if (err) {
       res.json(err);
@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
     }
   });
 });
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', function(req, res) {
   Team.delete(req.params.id, function(err, result) {
     if (err) {
       res.json(err);
@@ -45,8 +45,8 @@ router.delete('/:id', function(req, res, next) {
     }
   });
 });
-router.put('/:id', function(req, res, next) {
-  Team.update(req.params.id, req.body, function(err, result) {
+router.put('/:id', function(req, res) {
+  Team.update(req.params.id, req.body, function(err) {
     if (err) {
       res.json(err);
     } else {
