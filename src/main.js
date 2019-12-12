@@ -8,7 +8,7 @@ import router from './views/router.js';
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
 
-Vue.material.registerTheme('default', {
+Vue.material.registerTheme('default-dark', {
     primary: 'blue',
     accent: 'grey',
     warn: 'red'
