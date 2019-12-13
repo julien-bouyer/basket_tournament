@@ -1,24 +1,17 @@
 <template>
-    <md-toolbar class="md-large md-primary">
-        <div class="md-toolbar-row">
-            <div class="md-toolbar-section-start">
-                <span class="md-title">{{title}}</span>
-            </div>
-            <div class="md-toolbar-section-end">
-                <!--<a class="nav-link active" href="#" @click="back">Retour</a>-->
-                <!--<md-button class="md-icon-button">-->
-                    <!--<md-icon>more_vert</md-icon>-->
-                <!--</md-button>-->
-            </div>
+    <md-toolbar class="md-large" md-theme="orange">
+        <div class="md-toolbar-container">
+            <h1 class="md-title">{{title}}</h1>
         </div>
-        <div class="md-toolbar-row">
-            <md-tabs class="md-primary">
-                <md-tab md-label="Home"></md-tab>
-                <md-tab md-label="Tournois"></md-tab>
-                <md-tab md-label="Equipes"></md-tab>
-                <md-tab md-label="Joueurs" md-disabled="true"></md-tab>
-                <md-tab md-label="Matchs" md-disabled="true"></md-tab>
-            </md-tabs>
+        <div class="md-toolbar-container">
+            <div class="router-links">
+                <router-link tag="md-button" to="home" class="md-raised">Home</router-link>
+                <router-link tag="md-button" to="tournois" class="md-raised">Tournois</router-link>
+                <router-link tag="md-button" to="equipes" class="md-raised">Equipes</router-link>
+            </div>
+            <md-button @click="$router.go(-1)">
+                <md-icon>arrow_back</md-icon>
+            </md-button>
         </div>
     </md-toolbar>
 </template>
@@ -35,5 +28,7 @@
 </script>
 
 <style scoped>
-
+.router-links {
+    flex: 1;
+}
 </style>
