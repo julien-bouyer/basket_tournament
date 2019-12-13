@@ -18,17 +18,12 @@
 
 <script>
     export default {
-        methods: {
-            back: function () {
-                window.history.back();
-            }
-        },
         props: ['title']
     };
 </script>
 
 <style scoped>
-.router-links {
-    flex: 1;
-}
+    .router-links {
+        flex: 1;
+    }
 </style>

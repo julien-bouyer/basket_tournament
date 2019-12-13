@@ -2,7 +2,7 @@
     <section>
         <toolbar title="Tournoi de basket"/>
         <div class="main-content">
-            <router-view></router-view>
+            <router-view/>
         </div>
     </section>
 </template>
