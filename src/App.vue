@@ -1,7 +1,9 @@
 <template>
     <section>
         <toolbar title="Tournoi de basket"/>
-        <router-view></router-view>
+        <div class="main-content">
+            <router-view></router-view>
+        </div>
     </section>
 </template>
 
@@ -16,4 +18,13 @@
 </script>
 
 <style scoped>
+    .main-content {
+        background-color: #fff;
+        -ms-flex: 1;
+        flex: 1;
+        overflow: auto;
+        padding: 16px;
+        transition: all .4s cubic-bezier(.25,.8,.25,1);
+        transition-delay: .2s;
+    }
 </style>
