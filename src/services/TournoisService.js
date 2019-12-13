@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BACKEND_URL = process.env.TOURNOIS_BACKEND_URL;
+// const BACKEND_URL = process.env.TOURNOIS_BACKEND_URL;
+const BACKEND_URL = 'http://localhost:9009/api/tournois';
 
 export default {
     fetch() {

@@ -38,9 +38,12 @@
 
 <script>
     export default {
-        data() {
-            return {
-                tournois: []
+        beforeRouteEnter(route, redirect, next) {
+            next(vm => vm.$store.dispatch("tournois/fetch"));
+        },
+        computed: {
+            tournois() {
+                return this.$store.state.tournois.tournois;
             }
         }
     };
