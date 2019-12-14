@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 
 var connection = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  port     : 3385,
-  password : 'root',
-  database : 'basket_tournament'
+    host: 'localhost',
+    user: 'root',
+    port: 3385,
+    password: 'root',
+    database: 'basket_tournament',
+    charset: 'LATIN1_GENERAL_CI'
 });
 
 // (function checkConnection(connection) {
