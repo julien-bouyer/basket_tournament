@@ -1,19 +1,17 @@
 <template>
-    <md-toolbar class="md-large" md-theme="orange">
-        <div class="md-toolbar-container">
-            <h1 class="md-title">{{title}}</h1>
-        </div>
-        <div class="md-toolbar-container">
-            <div class="router-links">
-                <router-link tag="md-button" to="home" class="md-raised">Home</router-link>
-                <router-link tag="md-button" to="tournois" class="md-raised">Tournois</router-link>
-                <router-link tag="md-button" to="equipes" class="md-raised">Equipes</router-link>
-            </div>
-            <md-button @click="$router.go(-1)">
-                <md-icon>arrow_back</md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
+    <v-app-bar app color="primary" dark clipped-left>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+        <v-toolbar-title>
+            <span>{{title}}</span>
+        </v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn @click="$router.go(-1)" text>
+            <v-icon>arrow_back</v-icon>
+        </v-btn>
+    </v-app-bar>
 </template>
 
 <script>
@@ -23,7 +21,4 @@
 </script>
 
 <style scoped>
-    .router-links {
-        flex: 1;
-    }
 </style>

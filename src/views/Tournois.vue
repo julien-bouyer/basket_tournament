@@ -1,39 +1,14 @@
 <template>
-    <section class="container">
-        <md-table>
-            <md-table-header>
-                <md-table-row>
-                    <md-table-head>Nom</md-table-head>
-                    <md-table-head>Date</md-table-head>
-                    <md-table-head>Saison</md-table-head>
-                    <md-table-head>Lieu</md-table-head>
-                    <md-table-head>Actions</md-table-head>
-                </md-table-row>
-            </md-table-header>
-            <md-table-body>
-                <md-table-row v-for="(tournoi, index) in tournois" :key="index">
-                    <md-table-cell>{{tournoi.name}}</md-table-cell>
-                    <md-table-cell>{{tournoi.date_tournament | toDateString}}</md-table-cell>
-                    <md-table-cell>{{tournoi.season}}</md-table-cell>
-                    <md-table-cell>{{tournoi.place}}</md-table-cell>
-                    <md-table-cell>
-                        <md-button @click="edit(tournoi.id)">
-                            <md-icon class="md-size-2x">edit</md-icon>
-                        </md-button>
-                        <md-button @click="start(tournoi.id)">
-                            <md-icon class="md-size-2x">play_arrow</md-icon>
-                        </md-button>
-                        <md-button @click="stop(tournoi.id)">
-                            <md-icon class="md-size-2x">stop</md-icon>
-                        </md-button>
-                        <md-button @click="remove(tournoi.id)">
-                            <md-icon class="md-size-2x">delete</md-icon>
-                        </md-button>
-                    </md-table-cell>
-                </md-table-row>
-            </md-table-body>
-        </md-table>
-    </section>
+    <v-data-table :headers="headers" :items="tournois" :items-per-page="10" class="elevation-1">
+        <template v-slot:item.date_tournament="{item}">
+            {{item.date_tournament | toDateString}}
+        </template>
+        <template v-slot:item.action="{item}">
+            <v-icon @click="edit(item)">edit</v-icon>
+            <v-icon @click="start(item)">mdi-play</v-icon>
+            <v-icon @click="deleteTournoi(item)">delete</v-icon>
+        </template>
+    </v-data-table>
 </template>
 
 <script>
@@ -41,6 +16,17 @@
     import dateFilter from '../filters/DateFilters';
 
     export default {
+        data() {
+            return {
+                headers: [
+                    { text: 'Nom', value: 'name' },
+                    { text: 'Date', value: 'date_tournament' },
+                    { text: 'Saison', value: 'season' },
+                    { text: 'Lieu', value: 'place' },
+                    { text: 'Actions', value: 'action', sortable: false },
+                ]
+            }
+        },
         beforeRouteEnter(route, redirect, next) {
             next(vm => vm.$store.dispatch("tournois/fetch"));
         },
@@ -48,6 +34,17 @@
             ...mapGetters('tournois', {
                 tournois: 'getTournois'
             })
+        },
+        methods: {
+            edit(tournoi) {
+                console.log('edit : ' + tournoi);
+            },
+            start(tournoi) {
+                console.log('start : ' + tournoi);
+            },
+            deleteTournoi(tournoi) {
+                console.log('delete : ' + tournoi);
+            },
         },
         filters: {
             toDateString(date) {
