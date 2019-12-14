@@ -3,6 +3,13 @@ import tournoisService from '../../../services/TournoisService';
 const state = {
     tournois: []
 };
+
+const getters = {
+    getTournois() {
+        return state.tournois;
+    }
+};
+
 const actions = {
     fetch({commit}) {
         tournoisService.fetch()
@@ -14,7 +21,7 @@ const actions = {
             .then(tournoi => commit('setTournois', tournoi))
             .catch(console.error);
     },
-    addPerson({commit}, {tournoi, callback}) {
+    addTournoi({commit}, {tournoi, callback}) {
         tournoisService.create(tournoi)
             .then(tournoi => commit('addTournoi', {
                 tournoi,
@@ -35,6 +42,7 @@ const mutations = {
 export default {
     namespaced: true,
     state,
+    getters,
     actions,
     mutations
 }

@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <md-table v-once>
+        <md-table>
             <md-table-header>
                 <md-table-row>
                     <md-table-head>Nom</md-table-head>
@@ -13,7 +13,7 @@
             <md-table-body>
                 <md-table-row v-for="(tournoi, index) in tournois" :key="index">
                     <md-table-cell>{{tournoi.name}}</md-table-cell>
-                    <md-table-cell>{{tournoi.date_tournament}}</md-table-cell>
+                    <md-table-cell>{{tournoi.date_tournament | toDateString}}</md-table-cell>
                     <md-table-cell>{{tournoi.season}}</md-table-cell>
                     <md-table-cell>{{tournoi.place}}</md-table-cell>
                     <md-table-cell>
@@ -37,13 +37,21 @@
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+    import dateFilter from '../filters/DateFilters';
+
     export default {
         beforeRouteEnter(route, redirect, next) {
             next(vm => vm.$store.dispatch("tournois/fetch"));
         },
         computed: {
-            tournois() {
-                return this.$store.state.tournois.tournois;
+            ...mapGetters('tournois', {
+                tournois: 'getTournois'
+            })
+        },
+        filters: {
+            toDateString(date) {
+                return dateFilter.formatDate(date);
             }
         }
     };
