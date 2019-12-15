@@ -1,9 +1,9 @@
 <template>
     <v-app>
-        <nav-menu/>
-        <toolbar title="Tournoi de basket"/>
-        <v-content fluid fill-height>
-            <v-container fluid fill-height>
+        <nav-menu v-bind:drawer="drawer"/>
+        <toolbar title="Tournoi de basket" v-on:toggleDrawer="toggle"/>
+        <v-content>
+            <v-container fluid>
                 <router-view/>
             </v-container>
         </v-content>
@@ -26,6 +26,12 @@
         data: () => ({
             drawer: null
         }),
+        methods: {
+            toggle() {
+                this.drawer = !this.drawer;
+            }
+        }
+
     };
 </script>
 
