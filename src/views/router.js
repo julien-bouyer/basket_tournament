@@ -20,11 +20,7 @@ const routes = [
     }, {
         name: 'tournois',
         path: '/tournois',
-        component: lazy('tournois/List')
-    }, {
-        name: 'editTournois',
-        path: '/tournois/edit/:id',
-        component: lazy('tournois/Update')
+        component: lazy('Tournois')
     }, {
         path: '/',
         redirect: '/home'
