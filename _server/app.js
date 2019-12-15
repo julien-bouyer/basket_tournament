@@ -1,6 +1,6 @@
 'use strict';
 
-var express = require('express'),
+const express = require('express'),
     bodyParser = require('body-parser'),
     equipesRouter = require('./routes/equipes'),
     joueursRouter = require('./routes/joueurs'),
@@ -10,7 +10,7 @@ var express = require('express'),
     usersRouter = require('./routes/users'),
     cors = require('cors');
 
-var app = express();
+const app = express();
 
 app.set('port', process.env.PORT || 9009);
 app.use(bodyParser.json());
