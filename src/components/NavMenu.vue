@@ -33,9 +33,10 @@
 
 <script>
     export default {
-        props: ['drawer'],
-        mounted() {
-            this.drawer = null;
+        data() {
+            return {
+                drawer: true
+            }
         }
     }
 </script>

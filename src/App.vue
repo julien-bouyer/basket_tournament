@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <nav-menu v-bind:drawer="drawer"/>
+        <nav-menu ref="drawer"/>
         <toolbar title="Tournoi de basket" v-on:toggleDrawer="toggle"/>
         <v-content>
             <v-container fluid>
@@ -23,15 +23,11 @@
             Toolbar,
             'nav-menu': NavMenu
         },
-        data: () => ({
-            drawer: null
-        }),
         methods: {
             toggle() {
-                this.drawer = !this.drawer;
+                this.$refs.drawer.drawer = !this.$refs.drawer.drawer;
             }
         }
-
     };
 </script>
 
