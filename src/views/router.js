@@ -14,6 +14,10 @@ const routes = [
         path: '/equipes',
         component: lazy('equipes/List')
     }, {
+        name: 'editEquipes',
+        path: '/equipes/edit/:id',
+        component: lazy('equipes/Update')
+    }, {
         name: 'tournois',
         path: '/tournois',
         component: lazy('tournois/List')

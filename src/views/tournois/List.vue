@@ -18,19 +18,29 @@
 </template>
 
 <script>
-    import { mapGetters } from "vuex";
+    import {mapGetters} from "vuex";
     import dateFilter from '../../filters/DateFilters';
 
     export default {
         data() {
             return {
-                headers: [
-                    { text: 'Nom', value: 'name' },
-                    { text: 'Date', value: 'date_tournament' },
-                    { text: 'Saison', value: 'season' },
-                    { text: 'Lieu', value: 'place' },
-                    { text: 'Actions', value: 'action', sortable: false },
-                ]
+                headers: [{
+                    text: 'Nom',
+                    value: 'name'
+                }, {
+                    text: 'Date',
+                    value: 'date_tournament'
+                }, {
+                    text: 'Saison',
+                    value: 'season'
+                }, {
+                    text: 'Lieu',
+                    value: 'place'
+                }, {
+                    text: 'Actions',
+                    value: 'action',
+                    sortable: false
+                }]
             }
         },
         beforeRouteEnter(route, redirect, next) {
@@ -42,9 +52,6 @@
             })
         },
         methods: {
-            edit(tournoi) {
-                console.log('edit : ' + tournoi);
-            },
             start(tournoi) {
                 console.log('start : ' + tournoi);
             },
