@@ -4,16 +4,22 @@
             {{item.date_tournament | toDateString}}
         </template>
         <template v-slot:item.action="{item}">
-            <v-icon @click="edit(item)">edit</v-icon>
-            <v-icon @click="start(item)">mdi-play</v-icon>
-            <v-icon @click="deleteTournoi(item)">delete</v-icon>
+            <v-btn :to="{ name: 'editTournois', params: { id: item.id }}" text>
+                <v-icon>edit</v-icon>
+            </v-btn>
+            <v-btn @click="start(item)" text>
+                <v-icon>mdi-play</v-icon>
+            </v-btn>
+            <v-btn @click="deleteTournoi(item)" text>
+                <v-icon>delete</v-icon>
+            </v-btn>
         </template>
     </v-data-table>
 </template>
 
 <script>
     import { mapGetters } from "vuex";
-    import dateFilter from '../filters/DateFilters';
+    import dateFilter from '../../filters/DateFilters';
 
     export default {
         data() {
