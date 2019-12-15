@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app color="primary" dark clipped-left>
+    <v-app-bar app color="primary" light clipped-left>
         <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
             <span>{{title}}</span>

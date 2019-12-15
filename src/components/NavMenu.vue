@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer v-model="drawer" app clipped>
         <v-list nav>
-            <v-list-item-group mandatory color="primary">
+            <v-list-item-group mandatory color="secondary">
                 <v-list-item :to="{name : 'home'}">
                     <v-list-item-icon>
                         <v-icon>mdi-home</v-icon>

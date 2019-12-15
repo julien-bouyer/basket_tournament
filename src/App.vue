@@ -7,7 +7,7 @@
                 <router-view/>
             </v-container>
         </v-content>
-        <v-footer color="primary" dark app>
+        <v-footer color="primary" light app>
             <span>&copy; 2019</span>
         </v-footer>
     </v-app>
