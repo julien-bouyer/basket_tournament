@@ -3,13 +3,11 @@ import equipesService from '../../../services/EquipesService';
 const state = {
     equipes: []
 };
-
 const getters = {
     getEquipes() {
         return state.equipes;
     }
 };
-
 const actions = {
     fetch({commit}) {
         equipesService.fetch()
@@ -18,25 +16,23 @@ const actions = {
     },
     deleteEquipe({commit}, equipe) {
         equipesService.delete(equipe.id)
-            .then(equipe => commit('setEquipes', equipe))
+            .then(equipes => commit('setEquipes', equipes))
             .catch(console.error);
     },
-    addEquipe({commit}, {equipe, callback}) {
+    addEquipe({commit}, equipe) {
         equipesService.create(equipe)
-            .then(equipe => commit('addEquipe', {
-                equipe,
-                callback
-            }))
+            .then(equipes => commit('setEquipes', equipes))
+            .catch(console.error);
+    },
+    updateEquipe({commit}, equipe) {
+        equipesService.update(equipe)
+            .then(equipes => commit('setEquipes', equipes))
             .catch(console.error);
     }
 };
 const mutations = {
     setEquipes(state, equipes) {
         state.equipes = equipes;
-    },
-    addEquipe(state, {equipe, callback}) {
-        state.equipes.push(equipe);
-        callback();
     }
 };
 export default {

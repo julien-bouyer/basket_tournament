@@ -12,11 +12,7 @@ const routes = [
     }, {
         name: 'equipes',
         path: '/equipes',
-        component: lazy('equipes/List')
-    }, {
-        name: 'editEquipes',
-        path: '/equipes/edit/:id',
-        component: lazy('equipes/Update')
+        component: lazy('Equipes')
     }, {
         name: 'tournois',
         path: '/tournois',
