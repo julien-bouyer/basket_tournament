@@ -1,35 +1,51 @@
 {
   "name": "basket-tournament",
-  "version": "1.0.0",
-  "author": "Julien BOUYER",
+  "version": "1.1.0",
   "private": true,
-  "devDependencies": {
-    "browser-sync": "^2.26.7",
-    "debug": "~2.6.9",
-    "eslint": "5.12.1",
-    "npm-run-all": "4.1.5",
-    "rimraf": "^2.7.1"
-  },
-  "dependencies": {
-    "bootstrap": "^4.3.1",
-    "cookie-parser": "~1.4.3",
-    "cors": "^2.8.4",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "material-design-icons": "^3.0.1",
-    "morgan": "~1.9.0",
-    "mysql": "^2.17.1",
-    "pug": "^2.0.4",
-    "vue": "^2.6.10"
-  },
+  "author": "Julien BOUYER",
   "scripts": {
-    "db:build": "cd docker && docker-compose build",
-    "db:up": "cd docker && docker-compose up -d",
-    "db:down": "cd docker && docker-compose down",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
     "clean": "npm install rimraf && npm run clean:modules",
     "clean:modules": "rimraf ./node_modules",
-    "start": "run-p start:*",
-    "start:node": "node ./bin/www",
-    "start:server": "browser-sync start --no-notify --proxy 'http://localhost:3000/' -f './public/**'"
+    "client": "vue-cli-service serve --port 3000",
+    "db:build": "cd docker && docker-compose build",
+    "db:down": "cd docker && docker-compose down",
+    "db:up": "cd docker && docker-compose up -d",
+    "server": "npm start",
+    "start": "node _server/app.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.4",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "mysql": "^2.18.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.9",
+    "vuelidate": "^0.7.6",
+    "vuetify": "^2.3.21",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-plugin-eslint": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
+    "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "express": "^4.17.1",
+    "fibers": "^4.0.3",
+    "npm-run-all": "4.1.5",
+    "rimraf": "^2.7.1",
+    "sass": "^1.30.0",
+    "sass-loader": "^8.0.2",
+    "underscore": "^1.12.0",
+    "vue-cli-plugin-vuetify": "^2.0.8",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify-loader": "^1.6.0"
   }
 }

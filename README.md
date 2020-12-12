@@ -10,12 +10,9 @@ Run : `npm install`
 
 ### Run
 
-In debug mode :
+`npm run server`
 
-`DEBUG=myapp:* npm start`
-
-
-`npm run start`
+`npm run client`
 
 ### Database
 
@@ -25,5 +22,5 @@ In debug mode :
 `docker-compose up -d`
 `docker-compose down`
 
-`docker exec -it mariadb bash`
-`docker exec -it mariadb mysql -u root -p`
+`docker exec -it basketdb-docker bash`
+`docker exec -it basketdb-docker mysql -u root -p`
