@@ -1,0 +1,14 @@
+version: '3'
+services: 
+  bt-postgresql:
+    image: postgres:12.3
+    container_name: 'bt-postgres'
+    volumes:
+     - ${POSGRES_VOLUME}:/var/lib/postgresql/data/
+    #  - ./dump/:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_USER=${POSGRES_USER}
+      - POSTGRES_PASSWORD=${POSGRES_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - ${POSTGRES_PORT}:5432

@@ -1,0 +1,21 @@
+{
+  "name": "Basket Tournament",
+  "short_name": "basket-tournament",
+  "description": "Basketball tournament manage app",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "theme_color": "#e78200",
+  "background_color": "#001454",
+  "display": "standalone"
+}

@@ -24,3 +24,9 @@ Run : `npm install`
 
 `docker exec -it basketdb-docker bash`
 `docker exec -it basketdb-docker mysql -u root -p`
+
+
+## Colors
+
+bt-blue : 001454
+bt-orange : e78200
