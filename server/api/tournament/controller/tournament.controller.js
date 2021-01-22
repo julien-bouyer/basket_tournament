@@ -1,58 +1,93 @@
-const Tournament = require('../models/Tournament');
+const db = require('../../models');
+const Tournament = db.tournament;
+const Op = db.Sequelize.Op;
 
-exports.find = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const data = await Tournament.getById(id);
-    if (!data) {
-      return res.status(401).json({
-        message: `Tournament not found for id [${id}]`,
+exports.create = async (req, res) => {
+  const tournament = req.body.tournament;
+  // Validate request
+  if (!tournament) {
+    res.status(400).send({
+      message: 'Content can not be empty!',
+    });
+    return;
+  }
+
+  // Save Tournament in the database
+  Tournament.create(tournament)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || 'Some error occurred while creating the Tournament.',
       });
-    }
-    res.status(201).json({ data });
-  } catch (error) {
-    res.status(400).json(error);
-  }
+    });
 };
 
-exports.findAll = async (req, res) => {
-  try {
-    const data = await Tournament.find();
-    res.status(201).json({ data });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: 'Cannot get all tournaments' });
-  }
+exports.findAll = (req, res) => {
+  const name = req.query.name;
+  var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
+
+  Tournament.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving tournaments.',
+      });
+    });
 };
 
-exports.save = async (req, res) => {
-  try {
-    let tournament;
-    const id = req.params.id;
-    if (id) {
-      tournament = await Tournament.findById(id);
-      if (!tournament) {
-        return res.status(404).json({ message: `Tournament not found for id [${id}]` });
+exports.findOne = (req, res) => {
+  const uuid = req.params.uuid;
+
+  Tournament.findByUuid(uuid)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || `Error retrieving Tournament with id: ${id}`,
+      });
+    });
+};
+
+exports.update = (req, res) => {
+  const id = req.params.id;
+
+  Tournament.update(req.body, {
+    where: { id: id },
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: 'Tournament was updated successfully.',
+        });
+      } else {
+        res.send({
+          message: `Cannot update Tournament with id: ${id}. Maybe Tournament was not found or req.body is empty!`,
+        });
       }
-    }
-    if (!tournament) {
-      tournament = new Tournament();
-    }
-    tournament.name = req.body.name;
-    // TODO mapping
-    let data = await tournament.save();
-    res.status(201).json({ data });
-  } catch (error) {
-    res.status(400).json(error);
-  }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || `Error updating Tournament with id: ${id}`,
+      });
+    });
 };
 
-exports.delete = async (req, res) => {
+exports.loginTournament = async (req, res) => {
   try {
-    let data = await Tournament.deleteOne({ _id: req.params.id });
-    res.status(201).json({ data });
+    const login = req.body.login;
+    const password = req.body.password;
+    const tournament = await Tournament.findByCredentials(login, password);
+    if (!tournament) {
+      return res.status(401).json({ error: 'Login failed! Check authentication credentials' });
+    }
+    const token = await tournament.generateAuthToken();
+    res.status(201).json({ tournament, token });
   } catch (error) {
     res.status(400).json(error);
   }
 };
-

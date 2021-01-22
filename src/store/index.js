@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import equipes from './module/equipes';
-import tournois from './module/tournois';
+import team from '@/store/team';
+import tournament from '@/store/tournament';
+import user from '@/store/user';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules: {
-        equipes,
-        tournois
-    }
-})
+  modules: {
+    team,
+    tournament,
+    user,
+  },
+});

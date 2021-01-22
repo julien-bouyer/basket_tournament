@@ -9,24 +9,40 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    login: {
-      type: Sequelize.STRING,
+    uuid: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV1,
       unique: true,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    password: Sequelize.STRING,
-    firstname: Sequelize.STRING,
-    lastname: Sequelize.STRING,
-    email: Sequelize.STRING,
-    role: Sequelize.STRING,
+    login: {
+      type: Sequelize.STRING(50),
+      unique: true,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    password: Sequelize.STRING(60),
+    firstname: Sequelize.STRING(50),
+    lastname: Sequelize.STRING(50),
+    email: Sequelize.STRING(200),
+    role: Sequelize.STRING(20),
     token: Sequelize.STRING,
     // Timestamps
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
   });
+
+  User.findByUuid = async uuid => {
+    let user = await User.findOne({
+      where: { uuid },
+    });
+    return user;
+  };
 
   User.findByLogin = async login => {
     let user = await User.findOne({
@@ -56,12 +72,11 @@ module.exports = (sequelize, Sequelize) => {
 
   User.prototype.generateAuthToken = async function() {
     const user = this;
-    const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, process.env.AUTH_SECRET);
-    user.token = token;
-    await User.update(user, {
+    user.token = jwt.sign({ id: user.id, name: user.name, email: user.email }, process.env.AUTH_SECRET);
+    const num = await User.update(user, {
       where: { id: user.id },
     });
-    return token;
+    console.log(num);
   };
 
   return User;

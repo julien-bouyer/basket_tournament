@@ -1,19 +1,29 @@
 import Vue from 'vue';
-import vuetify from './plugins/vuetify';
-import VueRouter from 'vue-router';
-import App from './App';
-import router from './views/router.js';
-import store from './store';
+import App from '@/App.vue';
+import router from '@/router';
+import store from '@/store';
+import axios from 'axios';
+import UUID from 'vue-uuid';
+import PortalVue from 'portal-vue';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
-Vue.use(VueRouter);
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import './assets/scss/styles.scss';
 
+const base = axios.create({
+  baseURL: process.env.VUE_APP_NODE_URL,
+});
+
+Vue.prototype.$http = base;
 Vue.config.productionTip = false;
 
-/* eslint-disable no-new */
+Vue.use(UUID);
+Vue.use(PortalVue);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+
 new Vue({
-    el: '#app',
-    router,
-    store,
-    vuetify,
-    render: h => h(App),
-});
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app');

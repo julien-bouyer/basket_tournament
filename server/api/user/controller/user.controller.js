@@ -5,30 +5,22 @@ const Op = db.Sequelize.Op;
 
 exports.create = async (req, res) => {
   // Validate request
-  if (!req.body.login) {
+  const user = req.body.user;
+  if (!user) {
     res.status(400).send({
       message: 'Content can not be empty!',
     });
     return;
   }
 
-  const isUser = await User.findAll({ where: { email: req.body.email } });
+  const isUser = await User.findAll({ where: { login: user.login } });
   if (isUser.length >= 1) {
     return res.status(409).json({
-      message: 'email already in use',
+      message: 'login already in use',
     });
   }
 
-  const password = await bcrypt.hash(req.body.password, 8);
-  // Create a User
-  const user = {
-    login: req.body.login,
-    password: password,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    role: req.body.role,
-  };
+  user.password = await bcrypt.hash(user.password, 8);
 
   // Save User in the database
   User.create(user)
@@ -43,8 +35,8 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+  const login = req.query.login;
+  var condition = login ? { login: { [Op.iLike]: `%${login}%` } } : null;
 
   User.findAll({ where: condition })
     .then(data => {
@@ -58,23 +50,33 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  const id = req.params.id;
+  const uuid = req.params.uuid;
 
-  User.findByPk(id)
+  User.findByUuid(uuid)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || `Error retrieving User with id: ${id}`,
+        message: err.message || `Error retrieving User with uuid: ${uuid}`,
       });
     });
 };
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
+  // Validate request
+  const user = req.body.user;
+  if (!user) {
+    res.status(400).send({
+      message: 'Content can not be empty!',
+    });
+    return;
+  }
   const id = req.params.id;
 
-  User.update(req.body, {
+  user.password = await bcrypt.hash(user.password, 8);
+
+  User.update(user, {
     where: { id: id },
   })
     .then(num => {
@@ -103,8 +105,8 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       return res.status(401).json({ error: 'Login failed! Check authentication credentials' });
     }
-    const token = await user.generateAuthToken();
-    res.status(201).json({ user, token });
+    await user.generateAuthToken();
+    res.status(201).json({ user });
   } catch (error) {
     res.status(400).json(error);
   }

@@ -52,19 +52,10 @@ app.use(morgan('dev')); // configure morgan
 // );
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-// const equipesRouter = require('./routes/equipes'),
-// joueursRouter = require('./routes/joueurs'),
-// matchsRouter = require('./routes/matchs'),
-// phasesRouter = require('./routes/phases'),
-// tournoisRouter = require('./routes/tournois'),
-// app.use('/api/equipes', equipesRouter);
-// app.use('/api/joueurs', joueursRouter);
-// app.use('/api/matchs', matchsRouter);
-// app.use('/api/phases', phasesRouter);
-// app.use('/api/tournois', tournoisRouter);
-
 const userRoutes = require('./api/user/route/user');
+const tournamentRoutes = require('./api/tournament/route/tournament');
 app.use('/api/user', userRoutes);
+app.use('/api/tournament', tournamentRoutes);
 
 app.listen(PORT, () => {
   console.log(`✔ App is running on ${PORT}\n`);

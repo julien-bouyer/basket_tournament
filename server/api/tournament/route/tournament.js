@@ -3,10 +3,10 @@ const router = express.Router();
 const tournamentController = require('../controller/tournament.controller');
 const auth = require('../../../config/auth');
 
-router.get('/:id', auth, tournamentController.find);
+router.post('/', auth, tournamentController.create);
 router.get('/', auth, tournamentController.findAll);
-router.post('/', auth, tournamentController.save);
-router.put('/:id', auth, tournamentController.save);
-router.delete('/:id', auth, tournamentController.delete);
+router.get('/:id', auth, tournamentController.findOne);
+router.put('/:id', auth, tournamentController.update);
+// router.delete('/:id', auth, tournamentController.delete);
 
 module.exports = router;

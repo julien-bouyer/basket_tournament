@@ -31,7 +31,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // db.team = require('./Team.js')(sequelize, Sequelize);
-// db.tournament = require('./Tournament.js')(sequelize, Sequelize);
 db.user = require('./User.js')(sequelize, Sequelize);  
+db.tournament = require('./Tournament.js')(sequelize, Sequelize);  
 
 module.exports = db;
